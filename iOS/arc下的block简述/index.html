@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      ARC下的Block简述 | Bob&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Bob">
+    
+    
+      <meta name="description" content="一、Block的机制
+理解block的核心就在于：
+
+
+当block只使用变量的值时，那么只需要将变量的值作为实参传给block中的形参。
+如果这个变量是一个指向某个对象的指针，那么block是strong持有这个对象的。
+NSArray *array = @[10];
+void (^block)() = ^ {
+	NSLog(@&amp;quot;array = %@&amp;quot;, array);
+}">
+    
+
+    <meta name="description" content="一、Block的机制
+理解block的核心就在于：
+
+
+当block只使用变量的值时，那么只需要将变量的值作为实参传给block中的形参。
+如果这个变量是一个指向某个对象的指针，那么block是strong持有这个对象的。
+NSArray *array = @[10];
+void (^block)() = ^ {
+	NSLog(@&amp;quot;array = %@&amp;quot;, array);
+}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARC下的Block简述 | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/iOS/arc下的block简述/index.html">
+<meta property="og:site_name" content="Bob's Blog">
+<meta property="og:description" content="一、Block的机制
+理解block的核心就在于：
+
+
+当block只使用变量的值时，那么只需要将变量的值作为实参传给block中的形参。
+如果这个变量是一个指向某个对象的指针，那么block是strong持有这个对象的。
+NSArray *array = @[10];
+void (^block)() = ^ {
+	NSLog(@&amp;quot;array = %@&amp;quot;, array);
+}">
+<meta property="og:updated_time" content="2016-03-27T09:17:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ARC下的Block简述 | Bob's Blog">
+<meta name="twitter:description" content="一、Block的机制
+理解block的核心就在于：
+
+
+当block只使用变量的值时，那么只需要将变量的值作为实参传给block中的形参。
+如果这个变量是一个指向某个对象的指针，那么block是strong持有这个对象的。
+NSArray *array = @[10];
+void (^block)() = ^ {
+	NSLog(@&amp;quot;array = %@&amp;quot;, array);
+}">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+
+    <!-- 代码高亮 -->
+    <link href="/css/xcode.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Bob&#39;s Blog"><img src="/images/favicon.png" width="80" alt="Bob&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bob&#39;s Blog</a></h1>
+        <p class="panel-cover__subtitle">
+          艰难困苦，玉汝于成。
+        </p>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<!-- ----------------------------
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <li class="navigation__item">
+    <a href="https://github.com/someus/huno" title="Huno on GitHub">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+------------------------------ -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2014-12-31" class="post-meta__date date">2014-12-31</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              <a class="categories-link" href="/categories/iOS/">iOS</a>
+            </font>
+            
+              <font class="tags">
+                <a class="tags-link" href="/tags/arc/">arc</a>, <a class="tags-link" href="/tags/block/">block</a>, <a class="tags-link" href="/tags/iOS/">iOS</a>
+              </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">ARC下的Block简述</h1>
+    </header>
+
+    <section class="post">
+      <a id="more"></a>
+<h4>一、Block的机制</h4>
+<p>理解block的核心就在于：</p>
+<ol>
+<li>
+<p>当block只使用变量的值时，那么只需要将变量的值作为实参传给block中的形参。<br>
+如果这个变量是一个指向某个对象的指针，那么block是strong持有这个对象的。</p>
+<pre><code>NSArray *array = @[10];
+void (^block)() = ^ {
+	NSLog(@&quot;array = %@&quot;, array);
+};
+</code></pre>
+</li>
+<li>
+<p>当block中会改变变量的值时，那么需要将变量的地址（即指向变量的指针）作为实参传给block中的形参。此时这个变量需要用**__block**修饰。</p>
+<pre><code>__block NSArray *array = @[10];
+void (^block)() = ^ {
+	array = nil;
+};		
+</code></pre>
+</li>
+</ol>
+<h4>二、栈上和堆上</h4>
+<p>另外，要了解的就是</p>
+<ol>
+<li>
+<p>如果block是在栈上创建的，那么当出了作用域之后block就会被销毁，其自然也就不会再strong持有对象了。</p>
+</li>
+<li>
+<p>但是如果将block copy到了堆上，那么就有问题了。<br>
+如果一个对象有一个block成员变量，而这个block中又使用到了self，那么这两个对象互相引用，便会产生内存泄露。</p>
+<pre><code>typedef void(^Block)();
+
+@property (nonatomic, copy, readwrite) Block block;
+
+self.block = ^{
+	NSLog(@&quot;self.name = %@&quot;, self.name);
+};
+</code></pre>
+</li>
+</ol>
+<p>处理这个问题的方法就是：</p>
+<pre><code>	__weak __typeof(self) *weakSelf = self;
+	self.block = ^{
+		__strong __typeof(weakSelf) strongSelf = weakSelf;
+		NSLog(@&quot;self.name = %@&quot;, weakThis.name);
+	};
+</code></pre>
+<p>为什么这样处理就没有问题了呢？</p>
+<p>因为block中使用到的是一个weak弱引用对象的指针，这样block就也不会去strong持有这个对象，自然就没有内存泄露的问题了。</p>
+<p>可是，strongSelf又是做什么的呢？strongSelf是保证一旦进入block之后，self就不能再被释放直到block块结束。</p>
+<p>另外，要说明的一点是，不仅要考虑互相引用，也要考虑循环引用。</p>
+
+      <!-- more -->
+    </section>
+
+    
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+    }); 
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) { 
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500; 
+      scrollElem.hide();
+      $(window).scroll(function () {            
+        var scrollTop = $(document).scrollTop();       
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in           
+        }else{       
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!-- 代码高亮 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

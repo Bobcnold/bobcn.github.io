@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Android清单文件：AndroidManifest.xml | Bob&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Bob">
+    
+    
+      <meta name="description" content="AndroidManifest.xml示例
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;!-- 指定App的packageName --&amp;gt;
+&amp;lt;manifest 
+    xmlns:android=&amp;quot;http://schemas.android.com/apk/res/androi">
+    
+
+    <meta name="description" content="AndroidManifest.xml示例
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;!-- 指定App的packageName --&amp;gt;
+&amp;lt;manifest 
+    xmlns:android=&amp;quot;http://schemas.android.com/apk/res/androi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android清单文件：AndroidManifest.xml | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/Android/AndroidManifest/index.html">
+<meta property="og:site_name" content="Bob's Blog">
+<meta property="og:description" content="AndroidManifest.xml示例
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;!-- 指定App的packageName --&amp;gt;
+&amp;lt;manifest 
+    xmlns:android=&amp;quot;http://schemas.android.com/apk/res/androi">
+<meta property="og:updated_time" content="2016-03-27T09:16:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android清单文件：AndroidManifest.xml | Bob's Blog">
+<meta name="twitter:description" content="AndroidManifest.xml示例
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;!-- 指定App的packageName --&amp;gt;
+&amp;lt;manifest 
+    xmlns:android=&amp;quot;http://schemas.android.com/apk/res/androi">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+
+    <!-- 代码高亮 -->
+    <link href="/css/xcode.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Bob&#39;s Blog"><img src="/images/favicon.png" width="80" alt="Bob&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bob&#39;s Blog</a></h1>
+        <p class="panel-cover__subtitle">
+          艰难困苦，玉汝于成。
+        </p>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<!-- ----------------------------
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <li class="navigation__item">
+    <a href="https://github.com/someus/huno" title="Huno on GitHub">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+------------------------------ -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2015-12-28" class="post-meta__date date">2015-12-28</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              <a class="categories-link" href="/categories/Android/">Android</a>
+            </font>
+            
+              <font class="tags">
+                <a class="tags-link" href="/tags/Android/">Android</a>, <a class="tags-link" href="/tags/Manifest/">Manifest</a>
+              </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">Android清单文件：AndroidManifest.xml</h1>
+    </header>
+
+    <section class="post">
+      <a id="more"></a>
+<h3>AndroidManifest.xml示例</h3>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!-- 指定App的packageName --&gt;
+&lt;manifest 
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;top.bobcn.helloworld&quot;
+    android:versionCode=&quot;1.0.0&quot;
+    android:versionName=&quot;1.0.0&quot;&gt;
+    &lt;application
+        android:icon=&quot;@mipmap/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;&gt;
+        &lt;!-- App包含的所有组件都必须声明 --&gt;
+        &lt;activity
+            android:name=&quot;.MainActivity&quot;
+            android:label=&quot;@string/app_name&quot;
+            android:configChanges=&quot;orientation|screenSize&quot;
+            android:theme=&quot;@style/AppTheme.NoActionBar&quot; &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+
+    &lt;!-- 指定App需要的权限 --&gt;
+    &lt;uses-permission android:name=&quot;android.permission.CALL_PHONE&quot; /&gt;
+&lt;/manifest&gt;
+</code></pre>
+<h3>节点解析</h3>
+<h4>manifest</h4>
+<ul>
+<li>
+<p><strong>xmlns:android</strong></p>
+<p>定义android命名空间，一般为http://schemas.android.com/apk/res/android，这样使得Android中各种标准属性能在文件中使用，提供了大部分元素中的数据。</p>
+</li>
+<li>
+<p><strong>package</strong></p>
+<p>指定本应用内java主程序包的包名，它也是一个应用进程的默认名称。</p>
+</li>
+<li>
+<p><strong>versionCode</strong></p>
+<p>设备程序识别版本(升级)用的版本号。</p>
+</li>
+<li>
+<p><strong>versionName</strong></p>
+<p>为用户展现的版本号。</p>
+</li>
+<li>
+<p><strong>sharedUserId</strong></p>
+<p>表明数据权限，因为默认情况下，Android给每个APK分配一个唯一的UserID，所以是默认禁止不同APK访问共享数据的。若要共享数据，第一可以采用Share Preference方法，第二种就可以采用sharedUserId了，将不同APK的sharedUserId都设为一样，则这些APK之间就可以互相共享数据了。</p>
+</li>
+<li>
+<p><strong>sharedUserLabel</strong></p>
+<p>一个共享的用户名，它只有在设置了sharedUserId属性的前提下才会有意义。</p>
+</li>
+<li>
+<p><strong>installLocation</strong></p>
+<p>安装参数，是Android2.2中的一个新特性，installLocation有三个值可以选择：internalOnly、auto、preferExternal</p>
+<ul>
+<li>
+<p>选择preferExternal,系统会优先考虑将APK安装到SD卡上(当然最终用户可以选择为内部ROM存储上，如果SD存储已满，也会安装到内部存储上)</p>
+</li>
+<li>
+<p>选择auto，系统将会根据存储空间自己去适应</p>
+</li>
+<li>
+<p>选择internalOnly是指必须安装到内部才能运行</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Application</h4>
+<p>AndroidManifest.xml文件中必须含有一个Application标签，这个标签声明了每一个应用程序的组件及其属性。</p>
+<ul>
+<li>
+<p><strong>label/description</strong></p>
+<p>App名字、描述。</p>
+</li>
+<li>
+<p>icon</p>
+<p>App图标。</p>
+</li>
+<li>
+<p>theme</p>
+<p>App的主题风格。</p>
+</li>
+<li></li>
+</ul>
+
+      <!-- more -->
+    </section>
+
+    
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+    }); 
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) { 
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500; 
+      scrollElem.hide();
+      $(window).scroll(function () {            
+        var scrollTop = $(document).scrollTop();       
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in           
+        }else{       
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!-- 代码高亮 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

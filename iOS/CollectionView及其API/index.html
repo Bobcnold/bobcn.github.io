@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      UICollectionView简介及API梳理 | Bob&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Bob">
+    
+    
+      <meta name="description" content="UICollectionView是iOS6之后推出的新的UI控件，随着iOS版本的更迭，iOS6已经可以被接受作为App支持的最低版本了，也是时候使用UICollectionView和UICollectionViewLayout了。本文仅涉及iOS6既有内容。">
+    
+
+    <meta name="description" content="UICollectionView是iOS6之后推出的新的UI控件，随着iOS版本的更迭，iOS6已经可以被接受作为App支持的最低版本了，也是时候使用UICollectionView和UICollectionViewLayout了。本文仅涉及iOS6既有内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UICollectionView简介及API梳理 | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/iOS/CollectionView及其API/index.html">
+<meta property="og:site_name" content="Bob's Blog">
+<meta property="og:description" content="UICollectionView是iOS6之后推出的新的UI控件，随着iOS版本的更迭，iOS6已经可以被接受作为App支持的最低版本了，也是时候使用UICollectionView和UICollectionViewLayout了。本文仅涉及iOS6既有内容。">
+<meta property="og:updated_time" content="2016-03-27T09:17:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UICollectionView简介及API梳理 | Bob's Blog">
+<meta name="twitter:description" content="UICollectionView是iOS6之后推出的新的UI控件，随着iOS版本的更迭，iOS6已经可以被接受作为App支持的最低版本了，也是时候使用UICollectionView和UICollectionViewLayout了。本文仅涉及iOS6既有内容。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+
+    <!-- 代码高亮 -->
+    <link href="/css/xcode.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Bob&#39;s Blog"><img src="/images/favicon.png" width="80" alt="Bob&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bob&#39;s Blog</a></h1>
+        <p class="panel-cover__subtitle">
+          艰难困苦，玉汝于成。
+        </p>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<!-- ----------------------------
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <li class="navigation__item">
+    <a href="https://github.com/someus/huno" title="Huno on GitHub">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+------------------------------ -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2015-12-24" class="post-meta__date date">2015-12-24</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              <a class="categories-link" href="/categories/iOS/">iOS</a>
+            </font>
+            
+              <font class="tags">
+                <a class="tags-link" href="/tags/iOS/">iOS</a>
+              </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">UICollectionView简介及API梳理</h1>
+    </header>
+
+    <section class="post">
+      <blockquote>
+<p>UICollectionView是iOS6之后推出的新的UI控件，随着iOS版本的更迭，iOS6已经可以被接受作为App支持的最低版本了，也是时候使用UICollectionView和UICollectionViewLayout了。本文仅涉及iOS6既有内容。</p>
+</blockquote>
+<a id="more"></a>
+<p>标准的CollectionView包含三种元素视图：</p>
+<ul>
+<li>Cells：用于展示内容的主体，对于不同的cell可以指定不同尺寸和不同的内容</li>
+<li>Supplementary Views：追加视图 如果你对UITableView比较熟悉的话，可以理解为每个Section的Header或者Footer，用来标记每个section的view</li>
+<li>Decoration Views：装饰视图 这是每个section的背景，比如iBooks中的书架就是这个</li>
+</ul>
+<p>Cell必须是UICollectionViewCell的子类。</p>
+<p>Supplementary View和Decoration View必须是UICollectionReusableView或其子类。</p>
+<br>
+<p>类似于TableView，CollectionView也是通过dataSource来获取数据，通过delegate来处理交互响应；重用也类似于TableView的新方式；与其他View不同的是，CollectionView是通过一个单独的layout对象，来实现布局。</p>
+<h4>一、数据源</h4>
+<h5>dataSource</h5>
+<pre><code>@property (nonatomic, weak, nullable) id &lt;UICollectionViewDataSource&gt; dataSource;
+
+
+@protocol UICollectionViewDataSource &lt;NSObject&gt;
+@required
+
+// 返回指定section的cell数量
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
+
+// 返回指定indexPath的cell
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@optional
+
+// 返回section的数量
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView;
+
+// 返回指定indexPath的Supplementary View
+// The view that is returned must be retrieved from a call to -dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+- (void)reloadData;
+</code></pre>
+<h5>重用</h5>
+<p>TableView中cell重用有两种写法，CollectionView中实现cell重用是通过以下方法：</p>
+<pre><code>- (void)registerClass:(nullable Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier;
+- (void)registerNib:(nullable UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier;
+- (__kindof UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
+</code></pre>
+<p>类似地，Supplementary View重用：</p>
+<pre><code>- (void)registerClass:(nullable Class)viewClass forSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier;
+- (void)registerNib:(nullable UINib *)nib forSupplementaryViewOfKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier;
+- (__kindof UICollectionReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
+</code></pre>
+<h4>二、布局</h4>
+<pre><code>@property (nonatomic, strong) UICollectionViewLayout *collectionViewLayout;
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout;
+</code></pre>
+<p>改变布局：</p>
+<pre><code>- (void)setCollectionViewLayout:(UICollectionViewLayout *)layout animated:(BOOL)animated; // transition from one layout to another
+</code></pre>
+<h4>三、操作cell或section</h4>
+<h5>选择cell</h5>
+<pre><code>@property (nonatomic) BOOL allowsSelection; // default is YES
+@property (nonatomic) BOOL allowsMultipleSelection; // default is NO
+
+- (nullable NSArray&lt;NSIndexPath *&gt; *)indexPathsForSelectedItems; // returns nil or an array of selected index paths
+- (void)selectItemAtIndexPath:(nullable NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition;
+- (void)deselectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
+</code></pre>
+<p>也可以实现UICollectionViewDelegate协议中的方法，处理选择cell事件：</p>
+<pre><code>@protocol UICollectionViewDelegate &lt;UIScrollViewDelegate&gt;
+@optional
+
+// Methods for notification of selection/deselection and highlight/unhighlight events.
+// The sequence of calls leading to selection from a user touch is:
+//
+// (when the touch begins)
+// 1. -collectionView:shouldHighlightItemAtIndexPath:
+// 2. -collectionView:didHighlightItemAtIndexPath:
+//
+// (when the touch lifts)
+// 3. -collectionView:shouldSelectItemAtIndexPath: or -collectionView:shouldDeselectItemAtIndexPath:
+// 4. -collectionView:didSelectItemAtIndexPath: or -collectionView:didDeselectItemAtIndexPath:
+// 5. -collectionView:didUnhighlightItemAtIndexPath:
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath; // called when the user taps on an already-selected item in multi-select mode
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath;
+
+// ...
+@end
+</code></pre>
+<h5>其他section或cell操作</h5>
+<pre><code>- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
+
+- (void)insertSections:(NSIndexSet *)sections;
+- (void)deleteSections:(NSIndexSet *)sections;
+- (void)reloadSections:(NSIndexSet *)sections;
+- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection;
+
+- (void)insertItemsAtIndexPaths:(NSArray&lt;NSIndexPath *&gt; *)indexPaths;
+- (void)deleteItemsAtIndexPaths:(NSArray&lt;NSIndexPath *&gt; *)indexPaths;
+- (void)reloadItemsAtIndexPaths:(NSArray&lt;NSIndexPath *&gt; *)indexPaths;
+- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath;
+
+- (void)performBatchUpdates:(void (^ __nullable)(void))updates completion:(void (^ __nullable)(BOOL finished))completion; // allows multiple insert/delete/reload/move calls to be animated simultaneously. Nestable.
+</code></pre>
+<h4>四、返回视图信息或元素</h4>
+<pre><code>- (NSInteger)numberOfSections;
+- (NSInteger)numberOfItemsInSection:(NSInteger)section;
+
+- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
+
+- (nullable NSIndexPath *)indexPathForItemAtPoint:(CGPoint)point;
+- (nullable NSIndexPath *)indexPathForCell:(UICollectionViewCell *)cell;
+
+- (nullable UICollectionViewCell *)cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (NSArray&lt;__kindof UICollectionViewCell *&gt; *)visibleCells;
+- (NSArray&lt;NSIndexPath *&gt; *)indexPathsForVisibleItems;
+</code></pre>
+<p>另外，UICollectionViewDelegate中还有几个方法没有列出，主要是配合以下操作，有用到可以去看一下。</p>
+<ul>
+<li>Cell或Supplementary View已经不显示</li>
+<li>copy/paste（UIMenuController）</li>
+<li>改变布局</li>
+</ul>
+
+      <!-- more -->
+    </section>
+
+    
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+    }); 
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) { 
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500; 
+      scrollElem.hide();
+      $(window).scroll(function () {            
+        var scrollTop = $(document).scrollTop();       
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in           
+        }else{       
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!-- 代码高亮 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

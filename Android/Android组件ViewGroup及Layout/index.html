@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Android组件——ViewGroup及Layout | Bob&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Bob">
+    
+    
+      <meta name="description" content="ViewGroup
+ViewGroup是View的子类，主要作为视图容器类使用。它是一个抽象类，Layout都是它的子类。
+ViewGroup容器控制其子组件的分布依赖于ViewGroup.LayoutParams、ViewGroup.MarginLayoutParams两个内部类。
+
+
+ViewGroup.LayoutParams设置ViewGroup的位置信息。
+
+
+ViewGroup.Ma">
+    
+
+    <meta name="description" content="ViewGroup
+ViewGroup是View的子类，主要作为视图容器类使用。它是一个抽象类，Layout都是它的子类。
+ViewGroup容器控制其子组件的分布依赖于ViewGroup.LayoutParams、ViewGroup.MarginLayoutParams两个内部类。
+
+
+ViewGroup.LayoutParams设置ViewGroup的位置信息。
+
+
+ViewGroup.Ma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android组件——ViewGroup及Layout | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/Android/Android组件ViewGroup及Layout/index.html">
+<meta property="og:site_name" content="Bob's Blog">
+<meta property="og:description" content="ViewGroup
+ViewGroup是View的子类，主要作为视图容器类使用。它是一个抽象类，Layout都是它的子类。
+ViewGroup容器控制其子组件的分布依赖于ViewGroup.LayoutParams、ViewGroup.MarginLayoutParams两个内部类。
+
+
+ViewGroup.LayoutParams设置ViewGroup的位置信息。
+
+
+ViewGroup.Ma">
+<meta property="og:image" content="http://i12.tietuku.com/caf9bdc07703f28d.png">
+<meta property="og:updated_time" content="2016-03-27T09:16:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android组件——ViewGroup及Layout | Bob's Blog">
+<meta name="twitter:description" content="ViewGroup
+ViewGroup是View的子类，主要作为视图容器类使用。它是一个抽象类，Layout都是它的子类。
+ViewGroup容器控制其子组件的分布依赖于ViewGroup.LayoutParams、ViewGroup.MarginLayoutParams两个内部类。
+
+
+ViewGroup.LayoutParams设置ViewGroup的位置信息。
+
+
+ViewGroup.Ma">
+<meta name="twitter:image" content="http://i12.tietuku.com/caf9bdc07703f28d.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+
+    <!-- 代码高亮 -->
+    <link href="/css/xcode.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Bob&#39;s Blog"><img src="/images/favicon.png" width="80" alt="Bob&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bob&#39;s Blog</a></h1>
+        <p class="panel-cover__subtitle">
+          艰难困苦，玉汝于成。
+        </p>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<!-- ----------------------------
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <li class="navigation__item">
+    <a href="https://github.com/someus/huno" title="Huno on GitHub">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+------------------------------ -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2015-12-28" class="post-meta__date date">2015-12-28</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              <a class="categories-link" href="/categories/Android/">Android</a>
+            </font>
+            
+              <font class="tags">
+                <a class="tags-link" href="/tags/Android/">Android</a>, <a class="tags-link" href="/tags/layout/">layout</a>
+              </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">Android组件——ViewGroup及Layout</h1>
+    </header>
+
+    <section class="post">
+      <a id="more"></a>
+<h3>ViewGroup</h3>
+<p>ViewGroup是View的子类，主要作为视图容器类使用。它是一个抽象类，Layout都是它的子类。</p>
+<p>ViewGroup容器控制其子组件的分布依赖于ViewGroup.LayoutParams、ViewGroup.MarginLayoutParams两个内部类。</p>
+<ul>
+<li>
+<p><code>ViewGroup.LayoutParams</code>设置ViewGroup的位置信息。</p>
+</li>
+<li>
+<p><code>ViewGroup.MarginLayoutParams</code>设置ViewGroup边距信息（top、bottom、left、right等）。</p>
+</li>
+</ul>
+<p><img src="http://i12.tietuku.com/caf9bdc07703f28d.png" alt=""></p>
+<h3>Layout</h3>
+<h5>子元素重要属性：</h5>
+<ul>
+<li>
+<p><code>gravity</code>：其内部的对齐方式。</p>
+</li>
+<li>
+<p><code>layout_width</code>/<code>layout_height</code>：<code>match_parent</code>、<code>wrap_content</code>。</p>
+</li>
+</ul>
+<h4>LinearLayout-线性布局</h4>
+<p><code>orientation</code>：<code>horizontal</code>或者<code>vertical</code>。</p>
+<h5>子元素重要属性</h5>
+<ul>
+<li>
+<p><code>layout_gravity</code></p>
+<p>子标签在LinearLayout中的（相对于LinearLayout的）对齐方式。</p>
+<p>注意：当方向为horizontal时，横向的对齐方式无效；反之亦然。</p>
+</li>
+<li>
+<p><code>layout_weight</code>（权重）</p>
+<p>将剩余宽度按照比例分配。</p>
+</li>
+</ul>
+<h4>RalativeLayout-相对布局</h4>
+<h5>子元素重要属性</h5>
+<h6>对齐align</h6>
+<ul>
+<li>
+<p>相对于父元素（即RalativeLayout）</p>
+<p><code>layout_alignParentTop</code> / <code>layout_alignParentBottom</code> / <code>layout_alignParentLeft</code> / <code>layout_alignParentRight</code></p>
+<p><code>layout_centerHorizontal</code> / <code>layout_centerVertical</code> / <code>layout_centerInParent</code></p>
+</li>
+<li>
+<p>相对于其他子元素</p>
+<p><code>layout_alignTop</code> / <code>layout_alignBottom</code> / <code>layout_alignLeft</code> / <code>layout_alignRight</code></p>
+</li>
+</ul>
+<h6>相对（其它子元素）位置</h6>
+<p><code>layout_above</code> / <code>layout_below</code> / <code>layout_toLeftOf</code> / <code>layout_toRightOf</code></p>
+<h4>TableLayout-表格布局</h4>
+<p>TableLayout的<code>orientation</code>只能是<code>vertical</code>，设置为horizontal无效。</p>
+<p><code>stretchColumns</code>设置可被拉伸的列序号，<code>shrinkColumns</code>设置可被收缩的列序号，<code>collapseColumns</code>设置需要隐藏的列序号。多个列序号之间用逗号隔开。</p>
+<h5>子元素</h5>
+<p>TableLayout的每一个子元素占据一行。</p>
+<p>子元素（TableRow及同级子元素）默认<code>layout_width=&quot;match_parent&quot;</code>，可以不做设置，且设置为其他值无效；默认<code>layout_height=&quot;wrap_content&quot;</code>，可不做设置，除<code>&lt;TableRow&gt;</code>子元素以外的其他子元素可做修改。</p>
+<h5>行（子）元素</h5>
+<pre><code>&lt;TableRow&gt;
+    &lt;!-- 指定列序号 --&gt;
+    &lt;TextView android:text=&quot;hello&quot; android:layout_column=&quot;1&quot; /&gt;
+    &lt;!-- 设置该单元格占据的列数 --&gt;
+    &lt;TextView android:text=&quot;very well&quot; android:layout_span=&quot;2&quot; /&gt;
+&lt;/TableRow&gt;
+</code></pre>
+<h4>FrameLayout-帧布局</h4>
+<h5>子元素重要属性</h5>
+<ul>
+<li><code>layout_gravity</code>：不同于LinearLayout，帧布局中可以同时指定横向和纵向的布局。</li>
+</ul>
+<h4>GridLayout-网格布局</h4>
+<p>Android4.0新增的布局方式。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">对齐模式</th>
+<th style="text-align:center">行数量</th>
+<th style="text-align:left">列数量</th>
+<th style="text-align:center">保留行序号</th>
+<th style="text-align:center">保留列序号</th>
+<th style="text-align:center">使用默认页边距</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">alignmentMode</td>
+<td style="text-align:center">rowCount</td>
+<td style="text-align:left">columnCount</td>
+<td style="text-align:center">rowOrderPreserved</td>
+<td style="text-align:center">columnOrderPreserved</td>
+<td style="text-align:center">useDefaultMargins</td>
+</tr>
+</tbody>
+</table>
+<h5>子元素重要属性</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">行序号</th>
+<th style="text-align:center">列序号</th>
+<th style="text-align:left">占据行数</th>
+<th style="text-align:center">占据列数</th>
+<th style="text-align:center">（相对于网格）对齐位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">layout_row</td>
+<td style="text-align:center">layout_column</td>
+<td style="text-align:left">layout_rowSpan</td>
+<td style="text-align:center">layout_columnSpan</td>
+<td style="text-align:center">layout_gravity</td>
+</tr>
+</tbody>
+</table>
+<h4>AbsoluteLayout-绝对布局</h4>
+<p>绝对布局。已经过时的布局方式，略。</p>
+
+      <!-- more -->
+    </section>
+
+    
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+    }); 
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) { 
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500; 
+      scrollElem.hide();
+      $(window).scroll(function () {            
+        var scrollTop = $(document).scrollTop();       
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in           
+        }else{       
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!-- 代码高亮 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

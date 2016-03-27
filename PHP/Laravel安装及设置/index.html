@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Laravel安装及设置 | Bob&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Bob">
+    
+    
+      <meta name="description" content="Laravel安装、新建工程，设置环境变量；以及配置Apache使用路由。">
+    
+
+    <meta name="description" content="Laravel安装、新建工程，设置环境变量；以及配置Apache使用路由。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel安装及设置 | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/PHP/Laravel安装及设置/index.html">
+<meta property="og:site_name" content="Bob's Blog">
+<meta property="og:description" content="Laravel安装、新建工程，设置环境变量；以及配置Apache使用路由。">
+<meta property="og:updated_time" content="2016-03-27T09:18:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel安装及设置 | Bob's Blog">
+<meta name="twitter:description" content="Laravel安装、新建工程，设置环境变量；以及配置Apache使用路由。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+
+    <!-- 代码高亮 -->
+    <link href="/css/xcode.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Bob&#39;s Blog"><img src="/images/favicon.png" width="80" alt="Bob&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bob&#39;s Blog</a></h1>
+        <p class="panel-cover__subtitle">
+          艰难困苦，玉汝于成。
+        </p>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<!-- ----------------------------
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <li class="navigation__item">
+    <a href="https://github.com/someus/huno" title="Huno on GitHub">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+------------------------------ -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2016-03-05" class="post-meta__date date">2016-03-05</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              <a class="categories-link" href="/categories/php/">php</a>
+            </font>
+            
+              <font class="tags">
+                <a class="tags-link" href="/tags/laravel/">laravel</a>, <a class="tags-link" href="/tags/php/">php</a>
+              </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">Laravel安装及设置</h1>
+    </header>
+
+    <section class="post">
+      <blockquote>
+<p>Laravel安装、新建工程，设置环境变量；以及配置Apache使用路由。</p>
+</blockquote>
+<a id="more"></a>
+<ol>
+<li>
+<p>First, download the Laravel installer using Composer:</p>
+<p><code>composer global require &quot;laravel/installer&quot;</code></p>
+</li>
+<li>
+<p>Create project:</p>
+<p><code>cd &lt;directory&gt;</code>
+<code>composer create-project --prefer-dist laravel/laravel &lt;project name&gt;</code></p>
+</li>
+<li>
+<p>Environment Configuration:</p>
+<p>工程根目录下有环境变量配置文件。</p>
+<ul>
+<li>.env中配置环境变量；</li>
+<li>.env.example用于多人协作时指明必须配置的环境变量；</li>
+</ul>
+<p>APP_ENV的值配置成testing则会使用.env.testing中的配置。</p>
+</li>
+<li>
+<p>Access or set the configuration values using the global <code>config</code> helper function:</p>
+<p>所有配置文件都存放于config目录下。配置文件中第二个参数是.env中没有APP_DEBUG这个key时返回的值。</p>
+<pre><code> 'debug' =&gt; env('APP_DEBUG', false),
+</code></pre>
+<p>可以通过如下方式获取或设置配置值。</p>
+<pre><code> $value = config('app.timezone');
+ config(['app.timezone' =&gt; 'America/Chicago']);
+</code></pre>
+</li>
+<li>
+<p>需要开启Apache 的mod_rewrite功能才能使用路由</p>
+<pre><code> $ cd /etc/apache2
+ $ sudo vim httpd.conf
+</code></pre>
+ <!---->
+<pre><code> #LoadModule rewrite_module modules/mod_rewrite.so
+
+ ...
+
+ &lt;Directory /&gt;
+     Options FollowSymLinks
+     AllowOverride None
+ &lt;/Directory&gt;
+</code></pre>
+<p>把#LoadModule rewrite_module modules/mod_rewrite.so
+前的#去掉</p>
+<p>将AllowOverride None 改成 AllowOverride ALL</p>
+<p>重启Apache</p>
+<pre><code> $ sudo apachectl restart
+</code></pre>
+</li>
+</ol>
+
+      <!-- more -->
+    </section>
+
+    
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+    }); 
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) { 
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500; 
+      scrollElem.hide();
+      $(window).scroll(function () {            
+        var scrollTop = $(document).scrollTop();       
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in           
+        }else{       
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!-- 代码高亮 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

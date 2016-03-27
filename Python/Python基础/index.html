@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      学习Python——基础篇 | Bob&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Bob">
+    
+    
+      <meta name="description" content="参考廖雪峰的官方网站中的《Python教程》学习Python记录的笔记。（2015-11-29）">
+    
+
+    <meta name="description" content="参考廖雪峰的官方网站中的《Python教程》学习Python记录的笔记。（2015-11-29）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习Python——基础篇 | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/Python/Python基础/index.html">
+<meta property="og:site_name" content="Bob's Blog">
+<meta property="og:description" content="参考廖雪峰的官方网站中的《Python教程》学习Python记录的笔记。（2015-11-29）">
+<meta property="og:updated_time" content="2016-03-27T09:28:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习Python——基础篇 | Bob's Blog">
+<meta name="twitter:description" content="参考廖雪峰的官方网站中的《Python教程》学习Python记录的笔记。（2015-11-29）">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+
+    <!-- 代码高亮 -->
+    <link href="/css/xcode.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Bob&#39;s Blog"><img src="/images/favicon.png" width="80" alt="Bob&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bob&#39;s Blog</a></h1>
+        <p class="panel-cover__subtitle">
+          艰难困苦，玉汝于成。
+        </p>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<!-- ----------------------------
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <li class="navigation__item">
+    <a href="https://github.com/someus/huno" title="Huno on GitHub">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+------------------------------ -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2015-11-29" class="post-meta__date date">2015-11-29</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              <a class="categories-link" href="/categories/python/">python</a>
+            </font>
+            
+              <font class="tags">
+                <a class="tags-link" href="/tags/python/">python</a>
+              </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">学习Python——基础篇</h1>
+    </header>
+
+    <section class="post">
+      <blockquote>
+<p>参考廖雪峰的官方网站中的《Python教程》学习Python记录的笔记。（2015-11-29）</p>
+</blockquote>
+<a id="more"></a>
+<h3>〇、运行、输入输出</h3>
+<h4>命令行运行python：</h4>
+<pre><code>$ python
+$ python3
+</code></pre>
+<h4>运行python文件：</h4>
+<p>.py文件头</p>
+<pre><code>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+</code></pre>
+<p>授权并运行.py</p>
+<pre><code>$ chmod a+x hello.py
+$ ./hello.py
+</code></pre>
+<h4>输出：</h4>
+<pre><code>&gt;&gt;&gt; print('The quick brown fox', 'jumps over', 'the lazy dog')
+The quick brown fox jumps over the lazy dog
+&gt;&gt;&gt; print(r'\\\t\\') # 不转义
+&gt;&gt;&gt; # 多行打印字符串
+&gt;&gt;&gt; print('''line1
+... line2
+... line3''')
+</code></pre>
+<h4>输入：</h4>
+<pre><code>&gt;&gt;&gt; name = input(please enter your name:)
+</code></pre>
+<h3>一、数据类型</h3>
+<p>数据类型：整型、浮点数、字符串、布尔值（True、False）、空值（None）</p>
+<p>数据类型转换：</p>
+<pre><code>&gt;&gt;&gt; int('1.23') # =&gt; 1.23
+</code></pre>
+<h4>整型</h4>
+<pre><code>&gt;&gt;&gt; 10/3 # =&gt;3.3333333333333335
+&gt;&gt;&gt; 10//3 # =&gt; 3
+</code></pre>
+<h4>字符串：</h4>
+<pre><code>&gt;&gt;&gt; ord('中') # 显示字符的整数编码
+&gt;&gt;&gt; chr(200013) # 整数编码转换为字符
+
+&gt;&gt;&gt; 'abc'.encode('ascii') # string转换为bytes
+&gt;&gt;&gt; b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8') # bytes转换为string
+
+&gt;&gt;&gt; len('中文') # 字符串长度（=&gt;2）
+&gt;&gt;&gt; len('中文'.encode('utf-8')) # bytes长度（=&gt;6）
+
+&gt;&gt;&gt; 'my name is %s, my age is %02d, my height is %.1fm.' % ('Bob', 18, 1.70) # 格式化字符串
+</code></pre>
+<h3>二、数据容器</h3>
+<h4>list、Tuple：</h4>
+<p>类似于Array。</p>
+<pre><code>&gt;&gt;&gt; myFriends = ['Fox', 'Dog', 'Cat']
+&gt;&gt;&gt; myFriends[-3]
+&gt;&gt;&gt; myFriends.insert(1, 'Rabbit')
+&gt;&gt;&gt; myfriends.pop(3)
+&gt;&gt;&gt; myFriends.append('Pig')
+&gt;&gt;&gt; myFriends.pop()
+&gt;&gt;&gt; myFriends[0] = 'LittleFox'
+</code></pre>
+<p>Tuple的不同之处在于，一旦初始化就不能再修改。</p>
+<pre><code>&gt;&gt;&gt; myFamilys = ('nana', 'mama', 'sis')
+&gt;&gt;&gt; onlyOne = (1, ) # 只有一个元素时，需要元素后面加逗号；否则onlyOne = 1
+</code></pre>
+<h4>dict</h4>
+<p>类似于Swift中的Dictionary或java中的Map。</p>
+<pre><code>&gt;&gt;&gt; myInfos = {'name': 'Bob', 'age': 18, 'height': 1.70}
+&gt;&gt;&gt; 'email' in myInfos # 判断dict中是否存在某个key（=&gt;False）
+&gt;&gt;&gt; myInfos['name'] # 如果key不存在会报错
+&gt;&gt;&gt; myInfos.get('weight', 60.0) # 如果key不存在则返回None或者指定的value（=&gt;60.0）
+&gt;&gt;&gt; 
+</code></pre>
+<h4>set</h4>
+<p>跟数学上的集合类似。</p>
+<pre><code>&gt;&gt;&gt; aSet = set([1, 2, 3, 1]) # =&gt;{1, 2, 3}
+&gt;&gt;&gt; aSet.add(2) # =&gt;{1, 2, 3}
+&gt;&gt;&gt; aSet.remove(1) # =&gt;{2, 3}
+&gt;&gt;&gt; aSet | set([1, 2]) # 并集（=&gt;{1, 2, 3}）
+&gt;&gt;&gt; aSet &amp; set([3, 4]) # 交集（=&gt;{3}）
+</code></pre>
+<h3>三、流程控制语句</h3>
+<pre><code>if &lt;条件判断&gt;:
+    &lt;执行语句&gt;
+elif &lt;条件判断&gt;:
+    &lt;执行语句&gt;
+else:
+    &lt;执行语句&gt;
+</code></pre>
+<!---->
+<pre><code>for num in list(range(5)):
+    sum += num
+</code></pre>
+<!---->
+<pre><code>while  n &lt; 5:
+    sum += n
+</code></pre>
+<h3>四、函数</h3>
+<pre><code>&gt;&gt;&gt; help(abs)
+&gt;&gt;&gt; a = abs; b = a(-1); b # =&gt;1
+</code></pre>
+<h4>定义函数</h4>
+<pre><code>def my_abs(x):
+    if not isinstance(x, (int, float)):
+        raise TypeError('bad operand type')
+    if x &gt;= 0:
+        return x
+    else:
+        return -x
+</code></pre>
+<p>空语句<code>pass</code>，类似于<code>{}</code>。</p>
+<h4>返回值</h4>
+<p>可以返回多个值（实际上返回的是一个tuple）：</p>
+<pre><code>&gt;&gt;&gt; x, y = someFunc()
+</code></pre>
+<h4>默认参数</h4>
+<p>默认参数必须指向不可变对象。（参见<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431752945034eb82ac80a3e64b9bb4929b16eeed1eb9000" target="_blank" rel="external">《函数的参数》</a>）</p>
+<pre><code>&gt;&gt;&gt; def enroll(name, gender, age=6, city='Beijing'): pass
+&gt;&gt;&gt; enroll('Bob', 'F', city='Shenzhen')
+</code></pre>
+<h4>可变参数</h4>
+<pre><code>&gt;&gt;&gt; def my_sum(*numbers):
+...     sum = 0
+...     for num in numbers:
+...             sum += num
+...     return sum
+&gt;&gt;&gt; my_sum(1, 2, 3) # =&gt; 6
+</code></pre>
+<h4>关键字参数</h4>
+<pre><code>&gt;&gt;&gt; def person(name, age, **others)
+...     print('name:', name, 'age:', age, 'others:', others)
+&gt;&gt;&gt; person('Bob', 18, gender='F', city='Shenzhen') # =&gt;name: Bob age: 18 others: {'gender': 'F', 'city': 'Shenzhen'}
+</code></pre>
+<h4>命名关键字参数（应不常用）</h4>
+<h4>“解list”、“解dict”</h4>
+<pre><code>&gt;&gt;&gt; params1 = ['Bob', 'F']
+&gt;&gt;&gt; params2 = {'age': 18, 'city': 'Shenzhen'}
+&gt;&gt;&gt; enroll(*params1, **params2)
+&gt;&gt;&gt; # “类似于”解指针，*可以“解list”，**可以“解dict”。上语句等价于：
+&gt;&gt;&gt; enroll('Bob', 'F', age=18, city='Shenzhen')</code></pre>
+
+      <!-- more -->
+    </section>
+
+    
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+    }); 
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) { 
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500; 
+      scrollElem.hide();
+      $(window).scroll(function () {            
+        var scrollTop = $(document).scrollTop();       
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in           
+        }else{       
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!-- 代码高亮 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

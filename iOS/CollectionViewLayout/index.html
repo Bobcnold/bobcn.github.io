@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      UICollectionViewLayout-自定义及FlowLayout | Bob&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Bob">
+    
+    
+      <meta name="description" content="本文是继上一篇《UICollectionView简介及API梳理》之后，继续学习UICollectionViewLayout的笔记。">
+    
+
+    <meta name="description" content="本文是继上一篇《UICollectionView简介及API梳理》之后，继续学习UICollectionViewLayout的笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UICollectionViewLayout-自定义及FlowLayout | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/iOS/CollectionViewLayout/index.html">
+<meta property="og:site_name" content="Bob's Blog">
+<meta property="og:description" content="本文是继上一篇《UICollectionView简介及API梳理》之后，继续学习UICollectionViewLayout的笔记。">
+<meta property="og:updated_time" content="2016-03-27T09:17:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UICollectionViewLayout-自定义及FlowLayout | Bob's Blog">
+<meta name="twitter:description" content="本文是继上一篇《UICollectionView简介及API梳理》之后，继续学习UICollectionViewLayout的笔记。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+
+    <!-- 代码高亮 -->
+    <link href="/css/xcode.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Bob&#39;s Blog"><img src="/images/favicon.png" width="80" alt="Bob&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bob&#39;s Blog</a></h1>
+        <p class="panel-cover__subtitle">
+          艰难困苦，玉汝于成。
+        </p>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<!-- ----------------------------
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <li class="navigation__item">
+    <a href="https://github.com/someus/huno" title="Huno on GitHub">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+------------------------------ -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2015-12-24" class="post-meta__date date">2015-12-24</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              <a class="categories-link" href="/categories/iOS/">iOS</a>
+            </font>
+            
+              <font class="tags">
+                <a class="tags-link" href="/tags/iOS/">iOS</a>
+              </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">UICollectionViewLayout-自定义及FlowLayout</h1>
+    </header>
+
+    <section class="post">
+      <blockquote>
+<p>本文是继上一篇《UICollectionView简介及API梳理》之后，继续学习UICollectionViewLayout的笔记。</p>
+</blockquote>
+<a id="more"></a>
+<p>UICollectionViewLayout是和UICollectionView配合使用的布局类。</p>
+<br>
+<h4>UICollectionViewLayoutAttributes</h4>
+<p>CollectionView的元素视图的布局属性。包括：</p>
+<pre><code>@property (nonatomic) CGRect frame;
+@property (nonatomic) CGPoint center;
+@property (nonatomic) CGSize size;
+@property (nonatomic) CATransform3D transform3D;
+@property (nonatomic) CGRect bounds NS_AVAILABLE_IOS(7_0);
+@property (nonatomic) CGAffineTransform transform NS_AVAILABLE_IOS(7_0);
+@property (nonatomic) CGFloat alpha;
+@property (nonatomic) NSInteger zIndex; // default is 0
+@property (nonatomic, getter=isHidden) BOOL hidden; // As an optimization, UICollectionView might not create a view for items whose hidden attribute is YES
+@property (nonatomic, strong) NSIndexPath *indexPath;
+
+// 该元素视图的类型：Cell、SupplementaryView或DecorationView
+@property (nonatomic, readonly) UICollectionElementCategory representedElementCategory;
+
+// 同一个indexPath可以有多个SupplementaryView或DecorationView，这个值就是用来区分的。
+// 例如：在UICollectionViewFlowLayout中就有UICollectionElementKindSectionHeader和UICollectionElementKindSectionFooter。
+@property (nonatomic, readonly, nullable) NSString *representedElementKind; // nil when representedElementCategory is UICollectionElementCategoryCell
+</code></pre>
+<p>如果你还需要其他属性，可以建立一个UICollectionViewLayoutAttributes的子类，添加该属性。</p>
+<h4>自定义CollectionLayout</h4>
+<p>CollectionLayout将按照以下顺序调用方法：</p>
+<br>
+<ul>
+<li>
+<p>设定一些必要的layout的结构和初始需要的参数等。</p>
+<pre><code>  - (void)prepareLayout;
+</code></pre>
+</li>
+<li>
+<p>返回collectionView的内容的尺寸（scrollView的contentSize）：</p>
+<pre><code>  - (CGSize)collectionViewContentSize;
+</code></pre>
+</li>
+<li>
+<p>返回rect中的所有元素的布局属性：</p>
+<p>在以下</p>
+<pre><code>  - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath;
+  - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath;
+  - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath;
+</code></pre>
+<p>方法中返回相应的layoutAttributes，然后</p>
+<pre><code>  -(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect;
+</code></pre>
+<p>调用以上三个方法，返回layoutAttributes的array。</p>
+</li>
+</ul>
+<p>此外，还可以重写以下方法：</p>
+<ul>
+<li>
+<p>配合ScrollView的<code>-scrollViewWillEndDragging:withVelocity:targetContentOffset:</code>方法使用，返回该方法中需要的<code>targetContentOffset</code>：</p>
+<pre><code>  - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity;
+</code></pre>
+</li>
+<li>
+<p>当边界发生改变时，是否应该刷新布局。如果YES则在边界变化（一般是scroll到其他地方）时，将重新计算需要的布局信息。</p>
+<pre><code> -(BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds;
+</code></pre>
+</li>
+<li>
+<p>为元素视图设置插入动画和删除动画</p>
+<p>可以为插入设置一个初始的属性、删除设置一个完成的属性。这样就会和本身的属性形成一个动画。比如，设置初始的alpha为0将会产生一个淡入的动画。</p>
+<pre><code>  - (nullable UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath;
+  - (nullable UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath;
+  - (nullable UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingSupplementaryElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)elementIndexPath;
+  - (nullable UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingSupplementaryElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)elementIndexPath;
+  - (nullable UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingDecorationElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)decorationIndexPath;
+  - (nullable UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingDecorationElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)decorationIndexPath;
+</code></pre>
+</li>
+</ul>
+<h4>UICollectionViewLayout</h4>
+<p>重新布局：</p>
+<pre><code>- (void)invalidateLayout;
+</code></pre>
+<p>注册DecorationView对象类型：</p>
+<pre><code>- (void)registerClass:(nullable Class)viewClass forDecorationViewOfKind:(NSString *)elementKind;
+- (void)registerNib:(nullable UINib *)nib forDecorationViewOfKind:(NSString *)elementKind;
+</code></pre>
+<p>操作元素视图或改变视图大小：</p>
+<pre><code>- (void)prepareForCollectionViewUpdates:(NSArray&lt;UICollectionViewUpdateItem *&gt; *)updateItems;
+- (void)finalizeCollectionViewUpdates; // called inside an animation block after the update
+
+- (void)prepareForAnimatedBoundsChange:(CGRect)oldBounds; // UICollectionView calls this when its bounds have changed inside an animation block before displaying cells in its new bounds
+- (void)finalizeAnimatedBoundsChange; // also called inside the animation block
+</code></pre>
+<h4>UICollectionViewFlowLayout</h4>
+
+      <!-- more -->
+    </section>
+
+    
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+    }); 
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) { 
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500; 
+      scrollElem.hide();
+      $(window).scroll(function () {            
+        var scrollTop = $(document).scrollTop();       
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in           
+        }else{       
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!-- 代码高亮 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

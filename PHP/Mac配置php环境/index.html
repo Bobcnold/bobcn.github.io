@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      在Mac上搭建PHP开发环境 | Bob&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Bob">
+    
+    
+      <meta name="description" content="启动Mac自带的Apache，安装Mysql及设置开机启动、root用户密码，设置数据库的编码格式。">
+    
+
+    <meta name="description" content="启动Mac自带的Apache，安装Mysql及设置开机启动、root用户密码，设置数据库的编码格式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Mac上搭建PHP开发环境 | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/PHP/Mac配置php环境/index.html">
+<meta property="og:site_name" content="Bob's Blog">
+<meta property="og:description" content="启动Mac自带的Apache，安装Mysql及设置开机启动、root用户密码，设置数据库的编码格式。">
+<meta property="og:updated_time" content="2016-03-27T08:45:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Mac上搭建PHP开发环境 | Bob's Blog">
+<meta name="twitter:description" content="启动Mac自带的Apache，安装Mysql及设置开机启动、root用户密码，设置数据库的编码格式。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+
+    <!-- 代码高亮 -->
+    <link href="/css/xcode.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Bob&#39;s Blog"><img src="/images/favicon.png" width="80" alt="Bob&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bob&#39;s Blog</a></h1>
+        <p class="panel-cover__subtitle">
+          艰难困苦，玉汝于成。
+        </p>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<!-- ----------------------------
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <li class="navigation__item">
+    <a href="https://github.com/someus/huno" title="Huno on GitHub">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+------------------------------ -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2016-03-27" class="post-meta__date date">2016-03-27</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              <a class="categories-link" href="/categories/php/">php</a>
+            </font>
+            
+              <font class="tags">
+                <a class="tags-link" href="/tags/mac/">mac</a>, <a class="tags-link" href="/tags/php/">php</a>
+              </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">在Mac上搭建PHP开发环境</h1>
+    </header>
+
+    <section class="post">
+      <blockquote>
+<p>启动Mac自带的Apache，安装Mysql及设置开机启动、root用户密码，设置数据库的编码格式。</p>
+</blockquote>
+<a id="more"></a>
+<h3>1. Apache</h3>
+<p>Mac自带Apache，终端启动并查看版本信息。</p>
+<pre><code>sudo apachectl start		
+sudo apachectl －v
+</code></pre>
+<h3>2. MySQL</h3>
+<p>安装Mysql：</p>
+<pre><code>$ brew install mysql
+</code></pre>
+<p>设置Mysql开机自动启动：</p>
+<pre><code>$ mkdir -p ~/Library/LaunchAgents
+$ ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+$ find /usr/local/Cellar/mysql/ -name &quot;homebrew.mxcl.mysql.plist&quot; -exec cp {} ~/Library/LaunchAgents/ \;
+$ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</code></pre>
+<p>设置root账户密码：</p>
+<pre><code>$ /usr/local/mysql/bin/mysqladmin -u root password 12345
+</code></pre>
+<p>启动数据库：</p>
+<pre><code>$ mysql.server start
+</code></pre>
+<p>登录数据库：</p>
+<pre><code>$ mysql -u root -p
+</code></pre>
+<p>设置数据库的编码格式为UTF8</p>
+<ol>
+<li>
+<p>拷贝<code>/usr/local/opt/mysql/support-files/my-default.cnf</code>至<code>/etc/my.cnf</code>或其他位序的目录（<code>mysql --help</code>查看Default options are read from the following files in the given order:...）。</p>
+</li>
+<li>
+<p>在<code>[client]</code>部分加入：<code>default-character-set=utf8</code></p>
+<p>在<code>[mysqld]</code>部分加入：<code>character-set-server=utf8</code></p>
+</li>
+</ol>
+<h3>3. 设置apache多端口对应多目录</h3>
+<pre><code>$ cd /etc/apache2
+$ sudo vim httpd.conf
+</code></pre>
+<p>找到<code>Listen 80</code>，在其下面添加行<code>Listen 8080</code>，监听其他端口</p>
+<p>找到<code>httpd-vhosts.conf</code>所在行，打开其前面的注释</p>
+<pre><code>$ cd /etc/apache2/extra
+$ sudo vim httpd-vhosts.conf
+</code></pre>
+<p>文件内容可作如下配置</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+ServerAdmin xcode_hu@163.com
+DocumentRoot &quot;/Library/WebServer/Documents/website_80&quot;
+ServerName bob-website-80
+ErrorLog &quot;/private/var/log/apache2/bob-website-80-error_log&quot;
+CustomLog &quot;/private/var/log/apache2/dbob-website-80-access_log&quot; common
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:8080&gt;
+ServerAdmin xcode_hu@163.com
+DocumentRoot &quot;/Library/WebServer/Documents/website_8080&quot;
+ServerName bob-website-8080
+ErrorLog &quot;/private/var/log/apache2/bob-website-8080-error_log&quot;
+CustomLog &quot;/private/var/log/apache2/bob-website-8080-access_log&quot; common
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>然后重启apache服务即可</p>
+<pre><code>$ sudo apachectl restart</code></pre>
+
+      <!-- more -->
+    </section>
+
+    
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+    }); 
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) { 
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500; 
+      scrollElem.hide();
+      $(window).scroll(function () {            
+        var scrollTop = $(document).scrollTop();       
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in           
+        }else{       
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!-- 代码高亮 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Swift2.0之try catch | Bob&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Bob">
+    
+    
+      <meta name="description" content="为什么我要使用try catch？可以看一下知乎上的帖子《为什么不建议用 try catch？》中 pig pig 的回复。（2015-11-28）">
+    
+
+    <meta name="description" content="为什么我要使用try catch？可以看一下知乎上的帖子《为什么不建议用 try catch？》中 pig pig 的回复。（2015-11-28）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift2.0之try catch | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/iOS/Swift2.0之try-catch/index.html">
+<meta property="og:site_name" content="Bob's Blog">
+<meta property="og:description" content="为什么我要使用try catch？可以看一下知乎上的帖子《为什么不建议用 try catch？》中 pig pig 的回复。（2015-11-28）">
+<meta property="og:updated_time" content="2016-03-27T09:25:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift2.0之try catch | Bob's Blog">
+<meta name="twitter:description" content="为什么我要使用try catch？可以看一下知乎上的帖子《为什么不建议用 try catch？》中 pig pig 的回复。（2015-11-28）">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+
+    <!-- 代码高亮 -->
+    <link href="/css/xcode.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Bob&#39;s Blog"><img src="/images/favicon.png" width="80" alt="Bob&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bob&#39;s Blog</a></h1>
+        <p class="panel-cover__subtitle">
+          艰难困苦，玉汝于成。
+        </p>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<!-- ----------------------------
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <li class="navigation__item">
+    <a href="https://github.com/someus/huno" title="Huno on GitHub">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+------------------------------ -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2015-11-29" class="post-meta__date date">2015-11-29</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              <a class="categories-link" href="/categories/iOS/">iOS</a>
+            </font>
+            
+              <font class="tags">
+                <a class="tags-link" href="/tags/iOS/">iOS</a>, <a class="tags-link" href="/tags/swift/">swift</a>
+              </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">Swift2.0之try catch</h1>
+    </header>
+
+    <section class="post">
+      <blockquote>
+<p>为什么我要使用try catch？可以看一下知乎上的帖子<a href="http://www.zhihu.com/question/29459586" target="_blank" rel="external">《为什么不建议用 try catch？》</a>中 pig pig 的回复。（2015-11-28）</p>
+</blockquote>
+<a id="more"></a>
+<h4>构建异常类型</h4>
+<pre><code>enum MyError: ErrorType {  
+  case ParamIsNil
+}
+</code></pre>
+<h4>抛出异常</h4>
+<pre><code>static func someFunc(param: Int?) throws/*-&gt;前添加throws表示该方法可能会抛出异常*/ -&gt; Int
+{
+    guard let param = param else {
+        throw MyError.ParamIsNil // 抛出异常
+    }
+    
+    return param
+}
+</code></pre>
+<h4>处理异常</h4>
+<p>在可以抛出异常的方法（<code>-&gt;</code>前有<code>throws</code>）中，在调用会抛出异常的方法时，可以在其前面加<code>try</code>，这样异常会继续向上抛出。</p>
+<pre><code>func someFunc() throw 
+{
+    try anotherFunc()
+}
+</code></pre>
+<p>如果方法不抛出异常，那么必须使用<code>do catch</code>来捕获并处理异常。</p>
+<pre><code>let value: Int? = nil
+do {
+    try someFunc(value)
+}
+catch MyError.ParamIsNil {
+    print(&quot;error: value is nil&quot;)
+}
+catch {
+    print(&quot;error: other error&quot;)
+}
+</code></pre>
+<p>当然，如果你确信不会出现异常，可以使用<code>try!</code>。</p>
+<pre><code>try! someFunc(value)
+</code></pre>
+<h4>语法糖 try?</h4>
+<p><code>try?</code>会试图执行一个会抛出异常的语句。</p>
+<p>执行的结果为可选类型（如：返回<code>void</code>的语句，前面加<code>try?</code>,则整个语句会返回<code>()?</code>），如果这个执行结果为<code>nil</code>则表示语句抛出异常，否则拆包可获得<code>try?</code>之后语句的执行结果。</p>
+<pre><code>    ...
+    let result = try? remainder(numerator: 1, denominator: 2)
+    
+    guard let remainder = result else {
+        print(&quot;The denominator is zero.&quot;)
+        return true
+    }
+    
+    print(&quot;1 % 2 = \(remainder)&quot;)
+}
+
+func remainder(numerator numerator: Int, denominator: Int) throws -&gt; Int 
+{
+    if 0 == denominator {
+        throw MyError.DenominatorIsZero
+    }
+
+    return numerator%denominator;
+}
+</code></pre>
+<p>对于本来就返回optional值的语句来说，添加<code>try?</code>则又增加了一层optional。</p>
+<blockquote>
+<p>在下例中，try?后面跟随的语句返回的是一个[String : AnyObject]?类型。
+添加了try?之后，jsonResult = 右侧值类型为[String : AnyObject]??；
+如果try?后的语句未抛出异常，则右侧值不为nil，guard let会进行一次拆包，并赋值给jsonResult，即此时jsonResult的类型是[String : AnyObject]?。</p>
+</blockquote>
+<pre><code>guard let
+    jsonResult = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String : AnyObject],
+    dataArray = jsonResult?[&quot;data&quot;] as? [String]
+else {
+    throw MyError.InvalidJson
+}
+</code></pre>
+<h4>Defer</h4>
+<p>执行到defer语句时，其操作会被推入栈中，当作用域即将结束时（无论是正常还是异常），将会逐条运行栈中的操作语句（也就是最后入栈的操作语句会先被执行）。</p>
+<pre><code>func someFunc() throws
+{
+    guard openDirectory() else {
+        throw MyError.OpenDirectoryFail
+    }
+    defer{ closeDirectory() }
+    guard openFile() else {
+        throw MyError.OpenFileFail
+    }
+    defer{ closeFile() }
+    guard writeFile() else {
+        throw MyError.WriteFileFail
+    }
+}
+</code></pre>
+<p>上述代码即使</p>
+<ul>
+<li>写入文件 writeFile() 出现异常，文件和文件夹仍能够被关闭。注意：会先关闭文件，再关闭文件夹。</li>
+<li>打开文件 openFile() 出现异常，文件夹仍能够被关闭。</li>
+</ul>
+<hr>
+<p>参考：</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/96a7db3fde00" target="_blank" rel="external">Swift 2.0 异常处理</a></li>
+<li><a href="http://www.jianshu.com/p/eb718439551f" target="_blank" rel="external">[Swift2.0系列]Defer/Guard 基础语法</a></li>
+<li><a href="http://swift.gg/2015/08/31/swift-2-lets-try/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">Swift 2.0 中使用 try? 关键字</a></li>
+</ul>
+
+      <!-- more -->
+    </section>
+
+    
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+    }); 
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) { 
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500; 
+      scrollElem.hide();
+      $(window).scroll(function () {            
+        var scrollTop = $(document).scrollTop();       
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in           
+        }else{       
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!-- 代码高亮 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

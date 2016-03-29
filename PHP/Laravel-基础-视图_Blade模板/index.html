@@ -7,7 +7,7 @@
     
 
     <title>
-      Laravel-基础-路由 | Bob&#39;s Blog 
+      Laravel-基础-视图/Blade模板 | Bob&#39;s Blog 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -15,19 +15,23 @@
       <meta name="author" content="Bob">
     
     
-      <meta name="description" content="路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。">
+      <meta name="description" content="视图里面包含了你应用程序所提供的HTML代码，并且提供一个简单的方式来分离控制器和网页呈现上的逻辑。视图被保存在 resources/views 文件夹内。
+Blade模板是 Laravel 所提供的一个简单却又非常强大的模板引擎。">
     
 
-    <meta name="description" content="路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。">
+    <meta name="description" content="视图里面包含了你应用程序所提供的HTML代码，并且提供一个简单的方式来分离控制器和网页呈现上的逻辑。视图被保存在 resources/views 文件夹内。
+Blade模板是 Laravel 所提供的一个简单却又非常强大的模板引擎。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Laravel-基础-路由 | Bob's Blog">
-<meta property="og:url" content="http://yoursite.com/PHP/Laravel-基础-路由/index.html">
+<meta property="og:title" content="Laravel-基础-视图/Blade模板 | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/PHP/Laravel-基础-视图_Blade模板/index.html">
 <meta property="og:site_name" content="Bob's Blog">
-<meta property="og:description" content="路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。">
+<meta property="og:description" content="视图里面包含了你应用程序所提供的HTML代码，并且提供一个简单的方式来分离控制器和网页呈现上的逻辑。视图被保存在 resources/views 文件夹内。
+Blade模板是 Laravel 所提供的一个简单却又非常强大的模板引擎。">
 <meta property="og:updated_time" content="2016-03-29T17:33:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Laravel-基础-路由 | Bob's Blog">
-<meta name="twitter:description" content="路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。">
+<meta name="twitter:title" content="Laravel-基础-视图/Blade模板 | Bob's Blog">
+<meta name="twitter:description" content="视图里面包含了你应用程序所提供的HTML代码，并且提供一个简单的方式来分离控制器和网页呈现上的逻辑。视图被保存在 resources/views 文件夹内。
+Blade模板是 Laravel 所提供的一个简单却又非常强大的模板引擎。">
     
     
     
@@ -170,7 +174,7 @@ classes that you can use:
     
       
       <div class="post-meta">
-        <time datetime="2016-03-27" class="post-meta__date date">2016-03-27</time> &#8226; 
+        <time datetime="2016-03-28" class="post-meta__date date">2016-03-28</time> &#8226; 
 
         <span class="post-meta__tags tags">
 
@@ -187,129 +191,171 @@ classes that you can use:
       </div>
       
 
-      <h1 class="post-title">Laravel-基础-路由</h1>
+      <h1 class="post-title">Laravel-基础-视图/Blade模板</h1>
     </header>
 
     <section class="post">
       <blockquote>
-<p>路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。</p>
+<ul>
+<li>视图里面包含了你应用程序所提供的HTML代码，并且提供一个简单的方式来分离控制器和网页呈现上的逻辑。视图被保存在 resources/views 文件夹内。</li>
+<li>Blade模板是 Laravel 所提供的一个简单却又非常强大的模板引擎。</li>
+</ul>
 </blockquote>
 <a id="more"></a>
-<h4>基础路由</h4>
-<pre><code>Route::get('/', function()
+<h3>视图</h3>
+<pre><code>if (view()-&gt;exist('emails.customer'))
 {
-    return &quot;Hello World&quot;;
-});
-
-// 调用HomeController控制器的index()方法
-Route::post('foo/bar', 'HomeController@index');
-
-Route::match(['get', 'post'], '/', function()
-{
-    return view('welcome');
-});
-
-Route::any('foo', function()
-{
-    return &quot;&lt;h2&gt;Hello Bob!&lt;/h2&gt;&quot;;
-});
-</code></pre>
-<!--more-->
-<h4>路由参数</h4>
-<p>路由参数可以是可选择的。可以使用正则表达式限制参数。</p>
-<blockquote>
-<p>路由参数不能包含-字符，使用_替代。</p>
-</blockquote>
-<pre><code>Route::get('/{id?}', function($id = 1)
-{
-    return view('welcome', ['id' =&gt; $id]);
-});
-
-Route::match(['get', 'post'], 'welcome/{name}', function($name)
-{
-    return &quot;&lt;h2&gt;Hello World&lt;/h2&gt;&quot;;
-})
--&gt;where(['name' =&gt; '^\w+$']);
-</code></pre>
-<p>全局限制模式：如果希望特定的路由参数总是遵循特定的正则表达式，在<code>RouteServiceProvider</code>的<code>boot</code>方法里定义模式：</p>
-<pre><code>$router-&gt;pattern('id', '[0-9]+');
-</code></pre>
-<p>如果需要在路由外部获取其参数，可以</p>
-<pre><code>$id = $route-&gt;input('id');
-</code></pre>
-<p>或者使用<code>Illuminate\Http\Request</code>实体取得路由参数。</p>
-<pre><code>use Illuminate\Http\Request;
-
-Route::get('user/{id}', function(Request $request, $id)
-{
-    if ($request-&gt;route('id'))
-    {
-        //
-    }
-});
-</code></pre>
-<h4>命名路由</h4>
-<p>为路由命名，可以通过路由名跳转至该路由。</p>
-<pre><code>Route::post('user/profile', ['as' =&gt; 'disposeProfile', function()
-{
-    return view('test');
-}]);
-</code></pre>
-<p>也可为控制器动作指定路由名称：</p>
-<pre><code>Route::get('user/profile', [
-    'as' =&gt; 'profile', 'uses' =&gt; 'UserController@showProfile'
-]);
-</code></pre>
-<p>可以使用路由名称产生URL或进行重定向</p>
-<pre><code>$url = route('profile');
-$redirect = redirect()-&gt;route('profile');
-</code></pre>
-<p><code>currentRouteName</code>方法会返回目前请求的路由名称：</p>
-<pre><code>$name = Route::currentRouteName();
-</code></pre>
-<h4>路由群组</h4>
-<p>可以指定namespace（命名空间），prefix（URL前缀），middleware（中间件），domain（子域名路由）。</p>
-<p>其中URL前缀可以设置路由参数，并且也可以通过正则限制参数（通过where）。</p>
-<pre><code>Route::group(['namespace' =&gt; 'Admin', 'prefix' =&gt; 'admin/{user_id}', 'where' =&gt; ['user_id' =&gt; '[0-9]+'], 'middleware' =&gt; ['foo', 'bar'], 'domain' =&gt; '{account}.myapp.com'], function()
-{
-    /*  URL: .../admin/23 
-        controller路径: App/Http/Controllers/Admin/HomeController.php
-     */
-    Route::get('/', 'HomeController@index');
-
-    Route::post('manage', function($account)
-    {
-        return view('user_manage', ['account' =&gt; $account]);
-    });
-});
-</code></pre>
-<h4>模型绑定</h4>
-<p>在 RouteServiceProvider::boot 方法定义模型绑定:</p>
-<pre><code>public function boot(Router $router)
-{
-    parent::boot($router);
-    $router-&gt;model('user', 'App\User');
+    return view('emails.customer', ['name' =&gt; 'James']);
 }
 </code></pre>
-<p>定义一个有<code>{user}</code>参数的路由，请求<code>profile/1</code>将注入ID为1的User实体。</p>
-<pre><code>Route::get('profile/{user}', function(App\User $user)
-{
-    //
-});
+<p>从一个完整的文件路径来生成一个视图：</p>
+<pre><code>return view()-&gt;file($pathToFile, $data);
 </code></pre>
-<p>未找到匹配的模型实体，则会返回404错误。</p>
-<p>可以自定义未找到匹配的模型实体的行为：</p>
-<pre><code>Route::model('user', 'User', function()
-{
-    throw new NotFoundHttpException;
-});
+<h4>共享数据给所有视图</h4>
+<p>在服务提供者的 boot 方法内使用 share 方法。可以选择加在 AppServiceProvider 或者是新建一个单独的服务提供者来容纳这些代码。</p>
+<p>亦可在Controller的构造方法中使用 share 方法。</p>
+<pre><code>View::share('data', [1, 2, 3]);
+view()-&gt;share('data', [1, 2, 3]);
 </code></pre>
-<p>可以自定义模型绑定规则：（<em>未验证实践</em>）</p>
-<pre><code>Route::bind('user', function($value)
-{
-    return User::where('name', $value)-&gt;first();
-});
+<h4>视图组件</h4>
+<p>视图组件就是在视图被渲染前，会调用的闭包或类的方法。在ServiceProvider中组织视图组件（新的ServiceProvider需要添加到config/app.php的providers数组中）。</p>
+<p>视图组件没有默认的文件夹。可以放在App\Http\ViewComposers内。</p>
+<pre><code>&lt;?php namespace App\Providers;
+
+use View;
+use Illuminate\Support\ServiceProvider;
+
+class ComposerServiceProvider extends ServiceProvider {
+
+    public function boot()
+    {
+        // 使用类来指定视图组件
+        View::composer('profile', 'App\Http\ViewComposers\ProfileComposer');
+
+        // 使用闭包来指定视图组件， 可以针对多个视图组件，可以使用通配符
+        View::composer(['dashboard', '*'], function($view)
+        {
+
+        });
+    }
+}
 </code></pre>
+<p>一旦设置了视图组件，每次渲染 <code>profile</code> 之前 <code>ProfileComposer@compose</code> 都会执行。</p>
+<pre><code>&lt;?php namespace App\Http\ViewComposers;
+
+use Illuminate\Contracts\View\View;
+use Illuminate\Users\Repository as UserRepository;
+
+class ProfileComposer {
+
+    protected $users;
+
+    public function __construct(UserRepository $users)
+    {
+        $this-&gt;users = $users;
+    }
+
+    public function compose(View $view)
+    {
+        $view-&gt;with('count', $this-&gt;users-&gt;count());
+    }
+}
+</code></pre>
+<h3>模板</h3>
+<p>Blade页面布局</p>
+<pre><code>&lt;!-- Stored in resources/views/layouts/master.blade.php --&gt;
+
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;App Name - @yield('title')&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        @section('sidebar')
+            This is the master sidebar.
+        @show
+
+        &lt;div class=&quot;container&quot;&gt;
+            @yield('content')
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>在视图模板中使用Blade</p>
+<pre><code>&lt;!-- 继承master布局 --&gt;
+@extends('layouts.master')
+
+&lt;!-- 为@yield传值 --&gt;
+@section('title', 'Page Title')
+
+&lt;!-- 为@section传值，@parent表示父布局的内容 --&gt;
+@section('sidebar')
+    @parent
+
+    &lt;p&gt;This is appended to the master sidebar.&lt;/p&gt;
+@stop
+
+@section('content')
+    &lt;p&gt;This is my body content.&lt;/p&gt;
+@stop
+</code></pre>
+<p>加载子视图：</p>
+<pre><code>@include('view.name',  ['some' =&gt; 'data'])
+</code></pre>
+<p>使用 <code>overwrite</code> 声明可以重写区块：</p>
+<pre><code>@extends('list.item.container')
+
+@section('list.item.content')
+    &lt;p&gt;This is an item of type {{ $item->type }}&lt;/p&gt;
+@overwrite
+</code></pre>
+<h4>其他Blade语法</h4>
+<p>给数据一个默认值：</p>
+<pre><code>{{ isset($name) ? $name : 'Default' }}
+{{ $name or 'Default' }}
+</code></pre>
+<p>跳出Blade引擎的解析：</p>
+<pre><code>@{{ This will not be processed by Blade }}
+</code></pre>
+<p>数据不被转义：</p>
+<pre><code>Hello, {!! $name !!}.
+</code></pre>
+<p>注释：</p>
+<pre><code>{{-- This comment will not be in the rendered HTML --}}
+</code></pre>
+<h4>Blade控制语句</h4>
+<pre><code>@if (count($records) === 1)
+    I have one record!
+@elseif (count($records) &gt; 1)
+    I have multiple records!
+@else
+    I don't have any records!
+@endif
+
+@unless (Auth::check())
+    You are not signed in.
+@endunless
+</code></pre>
+<!---->
+<pre><code>@for ($i = 0; $i &lt; 10; $i++)
+    The current value is {{ $i }}
+@endfor
+
+@foreach ($users as $user)
+    &lt;p&gt;This is user {{ $user->id }}&lt;/p&gt;
+@endforeach
+
+@forelse($users as $user)
+    &lt;li&gt;{{ $user->name }}&lt;/li&gt;
+@empty
+    &lt;p&gt;No users&lt;/p&gt;
+@endforelse
+
+@while (true)
+    &lt;p&gt;I'm looping forever.&lt;/p&gt;
+@endwhile
+</code></pre>
+<h4>扩展Blade</h4>
+<p>&lt;扩展Blade待续&gt;</p>
 
       <!-- more -->
     </section>

@@ -7,7 +7,7 @@
     
 
     <title>
-      Laravel-基础-路由 | Bob&#39;s Blog 
+      Laravel-基础-中间件 | Bob&#39;s Blog 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -15,19 +15,23 @@
       <meta name="author" content="Bob">
     
     
-      <meta name="description" content="路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。">
+      <meta name="description" content="HTTP 中间件提供一个方便的机制来过滤进入应用程序的 HTTP 请求。
+Laravel 框架已经内置一些中间件，包括维护、身份验证、CSRF 保护，等等。所有的中间件都位于 app/Http/Middleware 目录内。">
     
 
-    <meta name="description" content="路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。">
+    <meta name="description" content="HTTP 中间件提供一个方便的机制来过滤进入应用程序的 HTTP 请求。
+Laravel 框架已经内置一些中间件，包括维护、身份验证、CSRF 保护，等等。所有的中间件都位于 app/Http/Middleware 目录内。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Laravel-基础-路由 | Bob's Blog">
-<meta property="og:url" content="http://yoursite.com/PHP/Laravel-基础-路由/index.html">
+<meta property="og:title" content="Laravel-基础-中间件 | Bob's Blog">
+<meta property="og:url" content="http://yoursite.com/PHP/Laravel-基础-中间件/index.html">
 <meta property="og:site_name" content="Bob's Blog">
-<meta property="og:description" content="路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。">
+<meta property="og:description" content="HTTP 中间件提供一个方便的机制来过滤进入应用程序的 HTTP 请求。
+Laravel 框架已经内置一些中间件，包括维护、身份验证、CSRF 保护，等等。所有的中间件都位于 app/Http/Middleware 目录内。">
 <meta property="og:updated_time" content="2016-03-29T17:33:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Laravel-基础-路由 | Bob's Blog">
-<meta name="twitter:description" content="路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。">
+<meta name="twitter:title" content="Laravel-基础-中间件 | Bob's Blog">
+<meta name="twitter:description" content="HTTP 中间件提供一个方便的机制来过滤进入应用程序的 HTTP 请求。
+Laravel 框架已经内置一些中间件，包括维护、身份验证、CSRF 保护，等等。所有的中间件都位于 app/Http/Middleware 目录内。">
     
     
     
@@ -170,7 +174,7 @@ classes that you can use:
     
       
       <div class="post-meta">
-        <time datetime="2016-03-27" class="post-meta__date date">2016-03-27</time> &#8226; 
+        <time datetime="2016-03-28" class="post-meta__date date">2016-03-28</time> &#8226; 
 
         <span class="post-meta__tags tags">
 
@@ -187,128 +191,73 @@ classes that you can use:
       </div>
       
 
-      <h1 class="post-title">Laravel-基础-路由</h1>
+      <h1 class="post-title">Laravel-基础-中间件</h1>
     </header>
 
     <section class="post">
       <blockquote>
-<p>路由，路由参数，命名路由，路由群组，模型绑定。在 app/Http/routes.php 中定义应用中的大多数路由。</p>
+<p>HTTP 中间件提供一个方便的机制来过滤进入应用程序的 HTTP 请求。
+Laravel 框架已经内置一些中间件，包括维护、身份验证、CSRF 保护，等等。所有的中间件都位于 app/Http/Middleware 目录内。</p>
 </blockquote>
 <a id="more"></a>
-<h4>基础路由</h4>
-<pre><code>Route::get('/', function()
-{
-    return &quot;Hello World&quot;;
-});
-
-// 调用HomeController控制器的index()方法
-Route::post('foo/bar', 'HomeController@index');
-
-Route::match(['get', 'post'], '/', function()
-{
-    return view('welcome');
-});
-
-Route::any('foo', function()
-{
-    return &quot;&lt;h2&gt;Hello Bob!&lt;/h2&gt;&quot;;
-});
+<p>Laravel 框架已经内置一些中间件，包括维护、身份验证、CSRF 保护，等等。所有的中间件都位于 app/Http/Middleware 目录内。</p>
+<h4>新建中间件</h4>
+<pre><code>$ php artisan make:middleware NewMiddleware
 </code></pre>
-<!--more-->
-<h4>路由参数</h4>
-<p>路由参数可以是可选择的。可以使用正则表达式限制参数。</p>
-<blockquote>
-<p>路由参数不能包含-字符，使用_替代。</p>
-</blockquote>
-<pre><code>Route::get('/{id?}', function($id = 1)
-{
-    return view('welcome', ['id' =&gt; $id]);
-});
+<p>NewMiddleware.php</p>
+<p>在handle()方法中写入控制语句。</p>
+<p>如符合条件，则可使用<code>$next($request)</code>语句跳过中间件。</p>
+<pre><code>&lt;?php namespace App\Http\Middleware;
 
-Route::match(['get', 'post'], 'welcome/{name}', function($name)
-{
-    return &quot;&lt;h2&gt;Hello World&lt;/h2&gt;&quot;;
-})
--&gt;where(['name' =&gt; '^\w+$']);
-</code></pre>
-<p>全局限制模式：如果希望特定的路由参数总是遵循特定的正则表达式，在<code>RouteServiceProvider</code>的<code>boot</code>方法里定义模式：</p>
-<pre><code>$router-&gt;pattern('id', '[0-9]+');
-</code></pre>
-<p>如果需要在路由外部获取其参数，可以</p>
-<pre><code>$id = $route-&gt;input('id');
-</code></pre>
-<p>或者使用<code>Illuminate\Http\Request</code>实体取得路由参数。</p>
-<pre><code>use Illuminate\Http\Request;
+use Closure;
 
-Route::get('user/{id}', function(Request $request, $id)
-{
-    if ($request-&gt;route('id'))
+class OldMiddleware {
+
+    public function handle($request, Closure $next)
     {
-        //
+        if ($request-&gt;input('age') &lt; 18)
+        {
+            return redirect('home'); // 重定向
+        }
+        return $next($request);
     }
-});
-</code></pre>
-<h4>命名路由</h4>
-<p>为路由命名，可以通过路由名跳转至该路由。</p>
-<pre><code>Route::post('user/profile', ['as' =&gt; 'disposeProfile', function()
-{
-    return view('test');
-}]);
-</code></pre>
-<p>也可为控制器动作指定路由名称：</p>
-<pre><code>Route::get('user/profile', [
-    'as' =&gt; 'profile', 'uses' =&gt; 'UserController@showProfile'
-]);
-</code></pre>
-<p>可以使用路由名称产生URL或进行重定向</p>
-<pre><code>$url = route('profile');
-$redirect = redirect()-&gt;route('profile');
-</code></pre>
-<p><code>currentRouteName</code>方法会返回目前请求的路由名称：</p>
-<pre><code>$name = Route::currentRouteName();
-</code></pre>
-<h4>路由群组</h4>
-<p>可以指定namespace（命名空间），prefix（URL前缀），middleware（中间件），domain（子域名路由）。</p>
-<p>其中URL前缀可以设置路由参数，并且也可以通过正则限制参数（通过where）。</p>
-<pre><code>Route::group(['namespace' =&gt; 'Admin', 'prefix' =&gt; 'admin/{user_id}', 'where' =&gt; ['user_id' =&gt; '[0-9]+'], 'middleware' =&gt; ['foo', 'bar'], 'domain' =&gt; '{account}.myapp.com'], function()
-{
-    /*  URL: .../admin/23 
-        controller路径: App/Http/Controllers/Admin/HomeController.php
-     */
-    Route::get('/', 'HomeController@index');
-
-    Route::post('manage', function($account)
-    {
-        return view('user_manage', ['account' =&gt; $account]);
-    });
-});
-</code></pre>
-<h4>模型绑定</h4>
-<p>在 RouteServiceProvider::boot 方法定义模型绑定:</p>
-<pre><code>public function boot(Router $router)
-{
-    parent::boot($router);
-    $router-&gt;model('user', 'App\User');
 }
 </code></pre>
-<p>定义一个有<code>{user}</code>参数的路由，请求<code>profile/1</code>将注入ID为1的User实体。</p>
-<pre><code>Route::get('profile/{user}', function(App\User $user)
+<h4>Before / After 中间件</h4>
+<p>前置中间件：在请求前执行操作，如上例。</p>
+<p>后置中间件：在请求后执行操作。</p>
+<pre><code>public function handle($request, Closure $next)
 {
-    //
-});
+    $response = $next($request);
+
+    // Perform action
+
+    return $response;
+}
 </code></pre>
-<p>未找到匹配的模型实体，则会返回404错误。</p>
-<p>可以自定义未找到匹配的模型实体的行为：</p>
-<pre><code>Route::model('user', 'User', function()
-{
-    throw new NotFoundHttpException;
-});
-</code></pre>
-<p>可以自定义模型绑定规则：（<em>未验证实践</em>）</p>
-<pre><code>Route::bind('user', function($value)
-{
-    return User::where('name', $value)-&gt;first();
-});
+<h4>注册中间件</h4>
+<h5>全局中间件</h5>
+<p>所有的 HTTP 请求都执行。只要将中间件的类加入到 <code>app/Http/Kernel.php</code> 的 <code>$middleware</code> 属性清单列表中。</p>
+<h5>指派中间件给路由</h5>
+<p>需要先将中间件添加到 <code>app/Http/Kernel.php</code> 的 <code>$routeMiddleware</code> 列表中。</p>
+<h4>可终止中间件</h4>
+<p><em>为啥叫可终止中间件？</em></p>
+<p>一旦定义了terminable中间件，则需要将其添加为全局中间件。</p>
+<pre><code>use Closure;
+use Illuminate\Contracts\Routing\TerminableMiddleware;
+
+class StartSession implements TerminableMiddleware {
+
+    public function handle($request, Closure $next)
+    {
+        return $next($request);
+    }
+
+    public function terminate($request, $response)
+    {
+        // 相应已经被发送至客户端后的操作
+    }
+}
 </code></pre>
 
       <!-- more -->
